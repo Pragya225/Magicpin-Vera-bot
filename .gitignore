@@ -1,0 +1,11 @@
+# Deploy only the HTTP bot and the data it loads.
+*
+!/.gitignore
+!/bot_server.py
+!/requirements.txt
+!/dataset/
+!/dataset/categories/
+!/dataset/categories/*.json
+!/dataset/customers_seed.json
+!/dataset/merchants_seed.json
+!/dataset/triggers_seed.json
