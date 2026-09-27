@@ -683,6 +683,16 @@ class BotRequestHandler(BaseHTTPRequestHandler):
             return
         json_response(self, 404, {"error": "not_found"})
 
+    def do_HEAD(self) -> None:
+        parsed = urlparse(self.path)
+        if parsed.path in ("/", "/v1/healthz", "/v1/metadata"):
+            self.send_response(200)
+            self.send_header("Content-Type", "application/json; charset=utf-8")
+            self.end_headers()
+        else:
+            self.send_response(404)
+            self.end_headers()
+
     def do_POST(self) -> None:
         parsed = urlparse(self.path)
         try:
